@@ -64,16 +64,17 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="image" Type="Binary" MaxLength="5000" FixedLength="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imageType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Questionnaires" Relationship="Self.FK_Questionnaire_Background" FromRole="Background" ToRole="Questionnaire" />
   </EntityType>
   <EntityType Name="ClosedAnswer">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="questionID" Type="Int32" Nullable="false" />
     <Property Name="text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="image" Type="Binary" MaxLength="500" FixedLength="true" />
@@ -84,7 +85,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="questionID" Type="Int32" Nullable="false" />
     <Property Name="correctText" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Question" Relationship="Self.FK_InputAnswer_Question" FromRole="OpenAnswer" ToRole="Question" />
@@ -93,7 +94,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="questionnaireID" Type="Int32" Nullable="false" />
     <Property Name="questionID" Type="Int32" Nullable="false" />
     <Property Name="x" Type="Int64" Nullable="false" />
@@ -109,7 +110,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="typeID" Type="Int32" />
     <Property Name="points" Type="Int16" Nullable="false" />
     <Property Name="infoText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="infoYoutubeURL" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -117,13 +118,14 @@
     <NavigationProperty Name="ClosedAnswers" Relationship="Self.FK_ClosedAnswer_Question" FromRole="Question" ToRole="ClosedAnswer" />
     <NavigationProperty Name="OpenAnswers" Relationship="Self.FK_InputAnswer_Question" FromRole="Question" ToRole="OpenAnswer" />
     <NavigationProperty Name="Pins" Relationship="Self.FK_Pin_Question" FromRole="Question" ToRole="Pin" />
+    <NavigationProperty Name="QuestionType" Relationship="Self.FK_Question_QuestionType" FromRole="Question" ToRole="QuestionType" />
     <NavigationProperty Name="QuestionThemes" Relationship="Self.FK_QuestionThemes_Question" FromRole="Question" ToRole="QuestionTheme" />
   </EntityType>
   <EntityType Name="Questionnaire">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="backgroundID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Background" Relationship="Self.FK_Questionnaire_Background" FromRole="Questionnaire" ToRole="Background" />
@@ -134,17 +136,25 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="questionID" Type="Int32" Nullable="false" />
     <Property Name="themeID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Question" Relationship="Self.FK_QuestionThemes_Question" FromRole="QuestionTheme" ToRole="Question" />
     <NavigationProperty Name="Theme" Relationship="Self.FK_QuestionTheme_Theme" FromRole="QuestionTheme" ToRole="Theme" />
   </EntityType>
-  <EntityType Name="ScoreBoard">
+  <EntityType Name="QuestionType">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK_Question_QuestionType" FromRole="QuestionType" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="ScoreBoard">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="userID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="score" Type="Int64" />
     <Property Name="questionnaireID" Type="Int32" Nullable="false" />
@@ -165,7 +175,7 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="QuestionThemes" Relationship="Self.FK_QuestionTheme_Theme" FromRole="Theme" ToRole="QuestionTheme" />
   </EntityType>
@@ -173,9 +183,10 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="image" Type="Binary" MaxLength="500" FixedLength="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="imageType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Pins" Relationship="Self.FK_Pin_Thumbnail" FromRole="Thumbnail" ToRole="Pin" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -290,6 +301,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Question_QuestionType">
+    <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_QuestionThemes_Question">
     <End Role="Question" Type="Self.Question" Multiplicity="1" />
     <End Role="QuestionTheme" Type="Self.QuestionTheme" Multiplicity="*" />
@@ -343,6 +366,7 @@
     <EntitySet Name="Questions" EntityType="Self.Question" />
     <EntitySet Name="Questionnaires" EntityType="Self.Questionnaire" />
     <EntitySet Name="QuestionThemes" EntityType="Self.QuestionTheme" />
+    <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
     <EntitySet Name="ScoreBoards" EntityType="Self.ScoreBoard" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Themes" EntityType="Self.Theme" />
@@ -382,6 +406,10 @@
     <AssociationSet Name="FK_Pin_Thumbnail" Association="Self.FK_Pin_Thumbnail">
       <End Role="Thumbnail" EntitySet="Thumbnails" />
       <End Role="Pin" EntitySet="Pins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_QuestionType" Association="Self.FK_Question_QuestionType">
+      <End Role="QuestionType" EntitySet="QuestionTypes" />
+      <End Role="Question" EntitySet="Questions" />
     </AssociationSet>
     <AssociationSet Name="FK_QuestionThemes_Question" Association="Self.FK_QuestionThemes_Question">
       <End Role="Question" EntitySet="Questions" />

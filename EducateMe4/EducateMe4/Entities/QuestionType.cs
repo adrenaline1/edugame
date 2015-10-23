@@ -12,18 +12,16 @@ namespace EducateMe4.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Background
+    public partial class QuestionType
     {
-        public Background()
+        public QuestionType()
         {
-            this.Questionnaires = new HashSet<Questionnaire>();
+            this.Questions = new HashSet<Question>();
         }
     
         public int ID { get; set; }
-        public byte[] image { get; set; }
         public string name { get; set; }
-        public string imageType { get; set; }
     
-        public virtual ICollection<Questionnaire> Questionnaires { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

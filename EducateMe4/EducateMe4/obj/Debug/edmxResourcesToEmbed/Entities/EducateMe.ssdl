@@ -66,8 +66,9 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="image" Type="binary" MaxLength="5000" />
+    <Property Name="image" Type="varbinary(max)" />
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="imageType" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="ClosedAnswer">
     <Key>
@@ -104,7 +105,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="type" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="typeID" Type="int" />
     <Property Name="points" Type="smallint" Nullable="false" />
     <Property Name="infoText" Type="nvarchar(max)" />
     <Property Name="infoYoutubeURL" Type="nchar" MaxLength="50" />
@@ -125,6 +126,13 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="questionID" Type="int" Nullable="false" />
     <Property Name="themeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="ScoreBoard">
     <Key>
@@ -157,8 +165,9 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="image" Type="binary" MaxLength="500" />
+    <Property Name="image" Type="varbinary(max)" />
     <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="imageType" Type="nchar" MaxLength="10" />
   </EntityType>
   <Association Name="FK_ClosedAnswer_Question">
     <End Role="Question" Type="Self.Question" Multiplicity="1" />
@@ -276,6 +285,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Question_QuestionType">
+    <End Role="QuestionType" Type="Self.QuestionType" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuestionType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Questionnaire_Background">
     <End Role="Background" Type="Self.Background" Multiplicity="1" />
     <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
@@ -350,6 +371,7 @@
     <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuestionTheme" EntityType="Self.QuestionTheme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ScoreBoard" EntityType="Self.ScoreBoard" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Theme" EntityType="Self.Theme" Schema="dbo" store:Type="Tables" />
@@ -389,6 +411,10 @@
     <AssociationSet Name="FK_Pin_Thumbnail" Association="Self.FK_Pin_Thumbnail">
       <End Role="Thumbnail" EntitySet="Thumbnail" />
       <End Role="Pin" EntitySet="Pin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_QuestionType" Association="Self.FK_Question_QuestionType">
+      <End Role="QuestionType" EntitySet="QuestionType" />
+      <End Role="Question" EntitySet="Question" />
     </AssociationSet>
     <AssociationSet Name="FK_Questionnaire_Background" Association="Self.FK_Questionnaire_Background">
       <End Role="Background" EntitySet="Background" />

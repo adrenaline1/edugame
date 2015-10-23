@@ -22,6 +22,7 @@ namespace EducateMe4.Entities
         public int ID { get; set; }
         public byte[] image { get; set; }
         public string name { get; set; }
+        public string imageType { get; set; }
     
         public virtual ICollection<Pin> Pins { get; set; }
     }

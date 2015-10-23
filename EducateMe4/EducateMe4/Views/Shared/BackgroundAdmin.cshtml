@@ -1,0 +1,12 @@
+﻿@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("Upload", "BackgroundAdmin", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <input type="file" id="Avatar" name="upload" />
+
+    <input type="submit" value="Upload" class="btn btn-default" />
+}

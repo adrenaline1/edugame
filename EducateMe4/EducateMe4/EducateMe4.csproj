@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackgroundAdminController.cs" />
     <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -214,6 +215,9 @@
       <DependentUpon>EducateMe.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\QuestionTheme.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\QuestionType.cs">
       <DependentUpon>EducateMe.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ScoreBoard.cs">
@@ -316,6 +320,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Background\Index.cshtml" />
     <Content Include="Views\Administration\Administration.cshtml" />
+    <Content Include="Views\Shared\BackgroundAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

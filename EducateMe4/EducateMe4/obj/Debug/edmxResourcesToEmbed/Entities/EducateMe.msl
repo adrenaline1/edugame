@@ -62,6 +62,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="imageType" ColumnName="imageType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -102,7 +103,7 @@
       <EntityTypeMapping TypeName="EducateMeModel.Question">
         <MappingFragment StoreEntitySet="Question">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="typeID" ColumnName="typeID" />
           <ScalarProperty Name="points" ColumnName="points" />
           <ScalarProperty Name="infoText" ColumnName="infoText" />
           <ScalarProperty Name="infoYoutubeURL" ColumnName="infoYoutubeURL" />
@@ -125,6 +126,14 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="questionID" ColumnName="questionID" />
           <ScalarProperty Name="themeID" ColumnName="themeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTypes">
+      <EntityTypeMapping TypeName="EducateMeModel.QuestionType">
+        <MappingFragment StoreEntitySet="QuestionType">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -163,6 +172,7 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="imageType" ColumnName="imageType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

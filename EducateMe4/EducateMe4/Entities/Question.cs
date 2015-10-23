@@ -23,7 +23,7 @@ namespace EducateMe4.Entities
         }
     
         public int ID { get; set; }
-        public string type { get; set; }
+        public Nullable<int> typeID { get; set; }
         public short points { get; set; }
         public string infoText { get; set; }
         public string infoYoutubeURL { get; set; }
@@ -32,6 +32,7 @@ namespace EducateMe4.Entities
         public virtual ICollection<ClosedAnswer> ClosedAnswers { get; set; }
         public virtual ICollection<OpenAnswer> OpenAnswers { get; set; }
         public virtual ICollection<Pin> Pins { get; set; }
+        public virtual QuestionType QuestionType { get; set; }
         public virtual ICollection<QuestionTheme> QuestionThemes { get; set; }
     }
 }

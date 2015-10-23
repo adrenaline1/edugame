@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="48c28cdec84a49b8871025cd0d0a2a5f" Name="Diagram1">
+      <Diagram DiagramId="59f8a066f465412ab9ae2f8081241721" Name="Diagram1">
         <EntityTypeShape EntityType="EducateMeModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.AspNetRole" Width="1.5" PointX="8.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.AspNetUserClaim" Width="1.5" PointX="13.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.AspNetUserLogin" Width="1.5" PointX="13.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.AspNetUser" Width="1.5" PointX="11" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.Background" Width="1.5" PointX="1.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.ClosedAnswer" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.OpenAnswer" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.Pin" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.Question" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.Questionnaire" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.QuestionTheme" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.ScoreBoard" Width="1.5" PointX="13.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.sysdiagram" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.Theme" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducateMeModel.Thumbnail" Width="1.5" PointX="3.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.AspNetRole" Width="1.5" PointX="8.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.AspNetUserClaim" Width="1.5" PointX="13.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.AspNetUserLogin" Width="1.5" PointX="13.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.AspNetUser" Width="1.5" PointX="11" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.Background" Width="1.5" PointX="3.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.ClosedAnswer" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.OpenAnswer" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.Pin" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.Question" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.Questionnaire" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.QuestionTheme" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.QuestionType" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.ScoreBoard" Width="1.5" PointX="16.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.Theme" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EducateMeModel.Thumbnail" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
         <AssociationConnector Association="EducateMeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_ScoreBoard_AspNetUsers" ManuallyRouted="false" />
@@ -30,6 +31,7 @@
         <AssociationConnector Association="EducateMeModel.FK_Pin_Question" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_Pin_Questionnaire" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_Pin_Thumbnail" ManuallyRouted="false" />
+        <AssociationConnector Association="EducateMeModel.FK_Question_QuestionType" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_QuestionThemes_Question" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_ScoreBoard_Questionnaire" ManuallyRouted="false" />
         <AssociationConnector Association="EducateMeModel.FK_QuestionTheme_Theme" ManuallyRouted="false" />

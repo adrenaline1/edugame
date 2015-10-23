@@ -37,6 +37,7 @@ namespace EducateMe4.Entities
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<QuestionTheme> QuestionThemes { get; set; }
+        public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<ScoreBoard> ScoreBoards { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Theme> Themes { get; set; }
