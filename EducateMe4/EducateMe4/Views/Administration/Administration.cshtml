@@ -31,8 +31,20 @@
             function doMouseDown(event) {
                 var canvasX = event.pageX,
                     canvasY = event.pageX;
+                drawPin(canvasX, canvasY);
+            }
 
-                alert("X=" + canvasX + "Y= " + canvasY);
+            function drawPin(canvasX, canvasY) {
+                var canvas = document.createElement('canvas');
+                canvas.setAttribute("width", "50");
+                canvas.setAttribute("height", "50");
+                var ctx = canvas.getContext('2d');
+                document.body.appendChild(canvas);
+                var img = new Image();
+                img.src = 'https://mdn.mozillademos.org/files/5395/backdrop.png';
+                img.onload = function() {
+                    ctx.drawImage(img, 0, 0,50,50);               
+                };
             }
         </script>
         <div>
