@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 D:\projects\edugame\edugame\EducateMe4\EducateMe4\bin\EducateMe4.dll.config
 D:\projects\edugame\edugame\EducateMe4\EducateMe4\bin\EducateMe4.dll
 D:\projects\edugame\edugame\EducateMe4\EducateMe4\bin\EducateMe4.pdb
@@ -54,7 +53,6 @@ D:\projects\edugame\edugame\EducateMe4\EducateMe4\bin\Microsoft.Owin.Security.Mi
 D:\projects\edugame\edugame\EducateMe4\EducateMe4\obj\Debug\EducateMe4.csprojResolveAssemblyReference.cache
 D:\projects\edugame\edugame\EducateMe4\EducateMe4\obj\Debug\EducateMe4.dll
 D:\projects\edugame\edugame\EducateMe4\EducateMe4\obj\Debug\EducateMe4.pdb
-=======
 F:\Hackaton2015\edugame\EducateMe4\EducateMe4\bin\EducateMe4.dll.config
 F:\Hackaton2015\edugame\EducateMe4\EducateMe4\bin\EducateMe4.dll
 F:\Hackaton2015\edugame\EducateMe4\EducateMe4\bin\EducateMe4.pdb
@@ -110,4 +108,3 @@ F:\Hackaton2015\edugame\EducateMe4\EducateMe4\bin\Microsoft.Owin.Security.Micros
 F:\Hackaton2015\edugame\EducateMe4\EducateMe4\obj\Debug\EducateMe4.csprojResolveAssemblyReference.cache
 F:\Hackaton2015\edugame\EducateMe4\EducateMe4\obj\Debug\EducateMe4.dll
 F:\Hackaton2015\edugame\EducateMe4\EducateMe4\obj\Debug\EducateMe4.pdb
->>>>>>> 1fef497a61651847c4cf26d9859089bee02894a3

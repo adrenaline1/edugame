@@ -10,10 +10,15 @@
     <title></title>
 </head>
     <body onload=initialise()>
-        <canvas id="gameCanvas" width="578" height="400"></canvas>
+        @*<canvas id="gameCanvas" width="578" height="400"></canvas>*@
         <script>
             function initialise() {
-                var canvas = document.getElementById('gameCanvas');
+                //var canvas = document.getElementById('gameCanvas');
+                var canvas = document.createElement('canvas');
+                canvas.setAttribute("width", "578");
+                canvas.setAttribute("height", "400");
+                var body = document.body;
+                body.appendChild(canvas);
                 var context = canvas.getContext('2d');
                 var x = 10;
                 var y = 30;
@@ -30,7 +35,7 @@
 
             function doMouseDown(event) {
                 var canvasX = event.pageX,
-                    canvasY = event.pageX;
+                    canvasY = event.pageY;
                 drawPin(canvasX, canvasY);
             }
 
@@ -38,8 +43,10 @@
                 var canvas = document.createElement('canvas');
                 canvas.setAttribute("width", "50");
                 canvas.setAttribute("height", "50");
+                canvas.setAttribute("style", "position:absolute;left:" + canvasX + "px; top:" + canvasY + "px;");
                 var ctx = canvas.getContext('2d');
-                document.body.appendChild(canvas);
+                var body = document.body;
+                body.appendChild(canvas);
                 var img = new Image();
                 img.src = 'https://mdn.mozillademos.org/files/5395/backdrop.png';
                 img.onload = function() {
