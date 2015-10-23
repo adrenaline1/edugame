@@ -29,5 +29,7 @@ namespace EducateMe4.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<EducateMe4.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
