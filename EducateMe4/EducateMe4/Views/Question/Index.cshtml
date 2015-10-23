@@ -1,0 +1,66 @@
+﻿@model IEnumerable<EducateMe4.Entities.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Score
+        </th>
+        <th>
+            Info Text
+        </th>
+
+        <th>
+            Info Video
+        </th>
+        <th></th>
+    </tr>
+
+    @{ int count = 1; }
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @count @{ count++; }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionType.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.points)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.infoText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.infoYoutubeURL)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
+                @Html.ActionLink("Add Answer", "AddAnswer", new {id = item.ID}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.ID})
+            </td>
+        </tr>
+}
+
+</table>
