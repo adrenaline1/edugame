@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using EducateMe4.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -7,11 +9,37 @@ namespace EducateMe4.Models
 {
     public class IndexViewModel
     {
+        private EducateMeEntities entities;
+
+        private EducateMeEntities Entities
+        {
+            get
+            {
+                if (entities == null)
+                {
+                    entities = new EducateMeEntities();
+                    
+                }
+
+                return entities;
+            }
+            
+        }
+
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public IList<Background> Backgrounds 
+        {
+            get { return Entities.Backgrounds.ToList(); }
+        }
+    }
+
+    public class BackgroundViewModel
+    {
+        
     }
 
     public class ManageLoginsViewModel

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EducateMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="ScoreBoards" Relationship="Self.FK_ScoreBoard_AspNetUsers" FromRole="AspNetUsers" ToRole="ScoreBoard" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Background">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="image" Type="Binary" MaxLength="5000" FixedLength="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Questionnaires" Relationship="Self.FK_Questionnaire_Background" FromRole="Background" ToRole="Questionnaire" />
+  </EntityType>
+  <EntityType Name="ClosedAnswer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="questionID" Type="Int32" Nullable="false" />
+    <Property Name="text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="Binary" MaxLength="500" FixedLength="true" />
+    <Property Name="isCorrect" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_ClosedAnswer_Question" FromRole="ClosedAnswer" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="OpenAnswer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="questionID" Type="Int32" Nullable="false" />
+    <Property Name="correctText" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_InputAnswer_Question" FromRole="OpenAnswer" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Pin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="questionnaireID" Type="Int32" Nullable="false" />
+    <Property Name="questionID" Type="Int32" Nullable="false" />
+    <Property Name="x" Type="Int64" Nullable="false" />
+    <Property Name="y" Type="Int64" Nullable="false" />
+    <Property Name="thumbnailID" Type="Int32" Nullable="false" />
+    <Property Name="order" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Pin_Question" FromRole="Pin" ToRole="Question" />
+    <NavigationProperty Name="Questionnaire" Relationship="Self.FK_Pin_Questionnaire" FromRole="Pin" ToRole="Questionnaire" />
+    <NavigationProperty Name="Thumbnail" Relationship="Self.FK_Pin_Thumbnail" FromRole="Pin" ToRole="Thumbnail" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="points" Type="Int16" Nullable="false" />
+    <Property Name="infoText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="infoYoutubeURL" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ClosedAnswers" Relationship="Self.FK_ClosedAnswer_Question" FromRole="Question" ToRole="ClosedAnswer" />
+    <NavigationProperty Name="OpenAnswers" Relationship="Self.FK_InputAnswer_Question" FromRole="Question" ToRole="OpenAnswer" />
+    <NavigationProperty Name="Pins" Relationship="Self.FK_Pin_Question" FromRole="Question" ToRole="Pin" />
+    <NavigationProperty Name="QuestionThemes" Relationship="Self.FK_QuestionThemes_Question" FromRole="Question" ToRole="QuestionTheme" />
+  </EntityType>
+  <EntityType Name="Questionnaire">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="backgroundID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Background" Relationship="Self.FK_Questionnaire_Background" FromRole="Questionnaire" ToRole="Background" />
+    <NavigationProperty Name="Pins" Relationship="Self.FK_Pin_Questionnaire" FromRole="Questionnaire" ToRole="Pin" />
+    <NavigationProperty Name="ScoreBoards" Relationship="Self.FK_ScoreBoard_Questionnaire" FromRole="Questionnaire" ToRole="ScoreBoard" />
+  </EntityType>
+  <EntityType Name="QuestionTheme">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="questionID" Type="Int32" Nullable="false" />
+    <Property Name="themeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_QuestionThemes_Question" FromRole="QuestionTheme" ToRole="Question" />
+    <NavigationProperty Name="Theme" Relationship="Self.FK_QuestionTheme_Theme" FromRole="QuestionTheme" ToRole="Theme" />
+  </EntityType>
+  <EntityType Name="ScoreBoard">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="score" Type="Int64" />
+    <Property Name="questionnaireID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ScoreBoard_AspNetUsers" FromRole="ScoreBoard" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Questionnaire" Relationship="Self.FK_ScoreBoard_Questionnaire" FromRole="ScoreBoard" ToRole="Questionnaire" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Theme">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="QuestionThemes" Relationship="Self.FK_QuestionTheme_Theme" FromRole="Theme" ToRole="QuestionTheme" />
+  </EntityType>
+  <EntityType Name="Thumbnail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="image" Type="Binary" MaxLength="500" FixedLength="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pins" Relationship="Self.FK_Pin_Thumbnail" FromRole="Thumbnail" ToRole="Pin" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScoreBoard_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="ScoreBoard" Type="Self.ScoreBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScoreBoard">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questionnaire_Background">
+    <End Role="Background" Type="Self.Background" Multiplicity="1" />
+    <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Background">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Questionnaire">
+        <PropertyRef Name="backgroundID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClosedAnswer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="ClosedAnswer" Type="Self.ClosedAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ClosedAnswer">
+        <PropertyRef Name="questionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InputAnswer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="OpenAnswer" Type="Self.OpenAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OpenAnswer">
+        <PropertyRef Name="questionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pin_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Pin" Type="Self.Pin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pin">
+        <PropertyRef Name="questionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pin_Questionnaire">
+    <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
+    <End Role="Pin" Type="Self.Pin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questionnaire">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pin">
+        <PropertyRef Name="questionnaireID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pin_Thumbnail">
+    <End Role="Thumbnail" Type="Self.Thumbnail" Multiplicity="1" />
+    <End Role="Pin" Type="Self.Pin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thumbnail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pin">
+        <PropertyRef Name="thumbnailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionThemes_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="QuestionTheme" Type="Self.QuestionTheme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="QuestionTheme">
+        <PropertyRef Name="questionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScoreBoard_Questionnaire">
+    <End Role="Questionnaire" Type="Self.Questionnaire" Multiplicity="1" />
+    <End Role="ScoreBoard" Type="Self.ScoreBoard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questionnaire">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ScoreBoard">
+        <PropertyRef Name="questionnaireID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionTheme_Theme">
+    <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
+    <End Role="QuestionTheme" Type="Self.QuestionTheme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Theme">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="QuestionTheme">
+        <PropertyRef Name="themeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="EducateMeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Backgrounds" EntityType="Self.Background" />
+    <EntitySet Name="ClosedAnswers" EntityType="Self.ClosedAnswer" />
+    <EntitySet Name="OpenAnswers" EntityType="Self.OpenAnswer" />
+    <EntitySet Name="Pins" EntityType="Self.Pin" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Questionnaires" EntityType="Self.Questionnaire" />
+    <EntitySet Name="QuestionThemes" EntityType="Self.QuestionTheme" />
+    <EntitySet Name="ScoreBoards" EntityType="Self.ScoreBoard" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Themes" EntityType="Self.Theme" />
+    <EntitySet Name="Thumbnails" EntityType="Self.Thumbnail" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScoreBoard_AspNetUsers" Association="Self.FK_ScoreBoard_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="ScoreBoard" EntitySet="ScoreBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questionnaire_Background" Association="Self.FK_Questionnaire_Background">
+      <End Role="Background" EntitySet="Backgrounds" />
+      <End Role="Questionnaire" EntitySet="Questionnaires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClosedAnswer_Question" Association="Self.FK_ClosedAnswer_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="ClosedAnswer" EntitySet="ClosedAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InputAnswer_Question" Association="Self.FK_InputAnswer_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="OpenAnswer" EntitySet="OpenAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pin_Question" Association="Self.FK_Pin_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Pin" EntitySet="Pins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pin_Questionnaire" Association="Self.FK_Pin_Questionnaire">
+      <End Role="Questionnaire" EntitySet="Questionnaires" />
+      <End Role="Pin" EntitySet="Pins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pin_Thumbnail" Association="Self.FK_Pin_Thumbnail">
+      <End Role="Thumbnail" EntitySet="Thumbnails" />
+      <End Role="Pin" EntitySet="Pins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionThemes_Question" Association="Self.FK_QuestionThemes_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="QuestionTheme" EntitySet="QuestionThemes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScoreBoard_Questionnaire" Association="Self.FK_ScoreBoard_Questionnaire">
+      <End Role="Questionnaire" EntitySet="Questionnaires" />
+      <End Role="ScoreBoard" EntitySet="ScoreBoards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionTheme_Theme" Association="Self.FK_QuestionTheme_Theme">
+      <End Role="Theme" EntitySet="Themes" />
+      <End Role="QuestionTheme" EntitySet="QuestionThemes" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
