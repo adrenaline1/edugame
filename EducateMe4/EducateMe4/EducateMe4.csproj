@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -159,8 +161,72 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Entities\AspNetRole.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUser.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserClaim.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AspNetUserLogin.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Background.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ClosedAnswer.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\C__MigrationHistory.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EducateMe.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EducateMe.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EducateMe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EducateMe.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EducateMe.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OpenAnswer.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Pin.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Question.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Questionnaire.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\QuestionTheme.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ScoreBoard.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagram.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Theme.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Thumbnail.cs">
+      <DependentUpon>EducateMe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +245,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Entities\EducateMe.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EducateMe.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\EducateMe.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EducateMe.edmx</DependentUpon>
+      <LastGenOutput>EducateMe.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\EducateMe.edmx.diagram">
+      <DependentUpon>EducateMe.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entities\EducateMe.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EducateMe.edmx</DependentUpon>
+      <LastGenOutput>EducateMe.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -229,6 +312,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Background\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,6 +323,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
