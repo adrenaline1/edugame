@@ -1,0 +1,58 @@
+﻿@model EducateMe4.Entities.Question
+
+@{
+    ViewBag.Title = "Add Answer";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.infoText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.infoText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.infoYoutubeURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.infoYoutubeURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionType.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionType.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

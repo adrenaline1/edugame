@@ -1,0 +1,73 @@
+﻿@model EducateMe4.Entities.Question
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Question</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.typeID, "Type", new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownList("typeID", String.Empty)
+                @Html.ValidationMessageFor(model => model.typeID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.text, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.text)
+                @Html.ValidationMessageFor(model => model.text)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.points, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.points)
+                @Html.ValidationMessageFor(model => model.points)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.infoText, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.infoText)
+                @Html.ValidationMessageFor(model => model.infoText)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.infoYoutubeURL, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.infoYoutubeURL)
+                @Html.ValidationMessageFor(model => model.infoYoutubeURL)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
