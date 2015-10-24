@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using EducateMe4.Entities;
 
@@ -120,7 +118,23 @@ namespace EducateMe4.Controllers
 
         [HttpPost]
         public ActionResult SelectedQuestions(List<ExpandoObject> values) {
-            return View();
+
+            foreach(dynamic value in values) {
+
+                int questionnaireID=value.step;
+                int questionID = int.Parse(value.id);
+                long x = value.x;
+                long y = value.y;
+
+                db.Pins.Add(new Pin {
+                    questionID = questionID,
+                    y = y,
+                    x = x,
+                    questionnaireID = questionnaireID
+                });
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
     }
