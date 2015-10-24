@@ -323,11 +323,17 @@
     <Content Include="Views\Background\Index.cshtml" />
     <Content Include="Views\Administration\Administration.cshtml" />
     <Content Include="Views\Shared\BackgroundAdmin.cshtml" />
-    <Content Include="Views\Administration\AddAnswer.cshtml" />
-    <Content Include="Views\Administration\Create.cshtml" />
-    <Content Include="Views\Administration\Delete.cshtml" />
-    <Content Include="Views\Administration\Edit.cshtml" />
-    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Question\AddAnswer.cshtml" />
+    <Content Include="Views\Question\AnswerCreate.cshtml" />
+    <Content Include="Views\Question\AnswerEdit.cshtml" />
+    <Content Include="Views\Question\Answers.cshtml" />
+    <Content Include="Views\Question\AnswersIndex.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
