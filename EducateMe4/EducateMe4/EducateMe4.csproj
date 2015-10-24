@@ -166,6 +166,7 @@
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Entities\AspNetRole.cs">
       <DependentUpon>EducateMe.tt</DependentUpon>
     </Compile>
@@ -322,6 +323,11 @@
     <Content Include="Views\Background\Index.cshtml" />
     <Content Include="Views\Administration\Administration.cshtml" />
     <Content Include="Views\Shared\BackgroundAdmin.cshtml" />
+    <Content Include="Views\Administration\AddAnswer.cshtml" />
+    <Content Include="Views\Administration\Create.cshtml" />
+    <Content Include="Views\Administration\Delete.cshtml" />
+    <Content Include="Views\Administration\Edit.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

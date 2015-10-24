@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<EducateMe4.Entities.Question>
+@{
     Layout = null;
 }
 
@@ -10,20 +11,18 @@
     <title></title>
 </head>
     <body onload=initialise()>
-        @*<canvas id="gameCanvas" width="578" height="400"></canvas>*@
         <script>
             function initialise() {
-                //var canvas = document.getElementById('gameCanvas');
                 var canvas = document.createElement('canvas');
                 canvas.setAttribute("width", "578");
-                canvas.setAttribute("height", "400");
+                canvas.setAttribute("height", "600");
                 var body = document.body;
-                body.appendChild(canvas);
+                body.insertBefore(canvas, body.firstChild);
                 var context = canvas.getContext('2d');
                 var x = 10;
                 var y = 30;
-                var width = 600;
-                var height = 200;
+                var width = 578;
+                var height = 600;
                 var imageObj = new Image();
 
                 imageObj.onload = function() {
@@ -39,6 +38,7 @@
                 drawPin(canvasX, canvasY);
             }
 
+            var count = 1;
             function drawPin(canvasX, canvasY) {
                 var canvas = document.createElement('canvas');
                 canvas.setAttribute("width", "50");
@@ -47,13 +47,40 @@
                 var ctx = canvas.getContext('2d');
                 var body = document.body;
                 body.appendChild(canvas);
+                ctx.font = "20px Georgia";
+                ctx.fillText(count, 1, 15);
                 var img = new Image();
                 img.src = '../../Images/walking.png';
                 img.onload = function() {
                     ctx.drawImage(img, 0, 0,50,50);               
                 };
+                count++;
+            }
+
+            function addQuestion(id, name) {
+
+                var div = document.createElement("div");
+                var chooseDiv = document.getElementById('questionaryDiv');
+
+                var label = document.createElement("label");
+                label.innerHTML = name;
+                var select = document.createElement("select");
+
+                chooseDiv.appendChild(div);
+
+                div.appendChild(label);
+                div.appendChild(select);
+
+                //var x = document.createElement("select");
+                //var option = document.createElement("option");
+                //option.text = name;
+                //x.add(option, x[0]);
+
             }
         </script>
+        <div id='questionaryDiv'>
+            
+        </div>
         <div>
             <input type="button" value="Upload background" />
             <input type="button" value="Save" />
@@ -64,5 +91,8 @@
                 <option value="audi">Audi</option>
             </select>
         </div>
+        <div>
+            @Html.Partial("Index",Model)
+        </div>  
     </body>
 </html>
