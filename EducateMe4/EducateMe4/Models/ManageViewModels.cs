@@ -39,7 +39,7 @@ namespace EducateMe4.Models
 
     public class BackgroundViewModel
     {
-        
+        public Questionnaire Questionnaire { get; set; }
     }
 
     public class ManageLoginsViewModel

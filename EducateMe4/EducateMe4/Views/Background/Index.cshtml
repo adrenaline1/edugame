@@ -2,5 +2,24 @@
     ViewBag.Title = "Background";
 }
 
+@using EducateMe4.Entities
 @model EducateMe4.Models.BackgroundViewModel
+
+
+<script type="text/javascript">
+    
+</script>
+
+
+<div style="position: relative;">
+    <img id="image" src='@Url.Action( "ShowImage", new { id = 2 })' width="596" height="394" />
+    
+
+
+    @foreach (Pin pin in Model.Questionnaire.Pins)
+    {
+        <input style="position:absolute;left:@String.Concat(pin.x - 596, "px");top:@String.Concat(pin.y - 394, "px");background-color:darkturquoise;width:80px;height:30px" type="button" value="KOESCHAN" />
+    }
+
+</div>
 
