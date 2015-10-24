@@ -4,10 +4,10 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="..\..\Scripts\jquery-1.10.2.js"></script>
     <title></title>
 </head>
     <body onload=initialise()>
@@ -39,6 +39,7 @@
             }
 
             var count = 1;
+            var thumbData = [];
             function drawPin(canvasX, canvasY) {
                 var canvas = document.createElement('canvas');
                 canvas.setAttribute("width", "50");
@@ -54,6 +55,11 @@
                 img.onload = function() {
                     ctx.drawImage(img, 0, 0,50,50);               
                 };
+                thumbData.push({
+                    step: count,
+                    x: canvasX,
+                    y: canvasY
+                });
                 count++;
             }
 
@@ -65,25 +71,54 @@
                 var label = document.createElement("label");
                 label.innerHTML = name;
                 var select = document.createElement("select");
-
+                select.setAttribute("id", id);
                 chooseDiv.appendChild(div);
-
                 div.appendChild(label);
+                
+                for (var i = 1; i < count; i++) {
+                    var opt = document.createElement('option'); // create new option element
+                    opt.appendChild(document.createTextNode(i));
+                    opt.value = i; // set value property of opt
+                    select.appendChild(opt); // add opt to end of select box (sel)
+                    div.appendChild(label);
+                }
+
                 div.appendChild(select);
+            }
 
-                //var x = document.createElement("select");
-                //var option = document.createElement("option");
-                //option.text = name;
-                //x.add(option, x[0]);
 
+            function submitForm() {
+                
+                var chooseDiv = document.getElementById('questionaryDiv').getElementsByTagName("select");
+                var allSelections = [];
+
+                for (var i = 0; i < chooseDiv.length; i++) {
+                    for (var j = 0; j < thumbData.length; j++) {
+                        if (thumbData[j].step == chooseDiv[i].value) {
+                            allSelections.push({
+                                id: chooseDiv[i].getAttribute("id"),
+                                value: chooseDiv[i].value,
+                                x: thumbData[j].canvasX,
+                                y: thumbData[j].canvasY
+                            });
+                        }
+                    }
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "SelectedQuestions", // the method we are calling
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(thumbData)
+                });
             }
         </script>
-        <div id='questionaryDiv'>
-            
-        </div>
+                <div id='questionaryDiv'>
+                </div>
+                <input type="button" onclick="submitForm()" value="Save" />
         <div>
             <input type="button" value="Upload background" />
-            <input type="button" value="Save" />
+           
             <select>
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
