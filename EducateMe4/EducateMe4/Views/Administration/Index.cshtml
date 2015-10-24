@@ -57,7 +57,7 @@
 
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
-                @Html.ActionLink("Add Answer", "AddAnswer", new {id = item.ID}) |
+                @Html.ActionLink("Answers", "Answers", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new {id = item.ID})
                 <button id="@item.ID" questionname="@item.text" onclick="addQuestion(@item.ID,'@item.text')" type="button">Add to map</button>
             </td>
