@@ -10,6 +10,8 @@ namespace EducateMe4.Controllers {
     {
         public ActionResult Index()
         {
+            string option = Request.Form["option"].ToString();
+
             BackgroundViewModel model = new BackgroundViewModel();
 
             return View(model);
