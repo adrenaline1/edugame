@@ -126,14 +126,17 @@ namespace EducateMe4.Controllers
                 long x = value.x;
                 long y = value.y;
 
-                db.Pins.Add(new Pin {
-                    questionID = questionID,
-                    y = y,
-                    x = x,
-                    questionnaireID = questionnaireID
-                });
+                if (db.Pins.FirstOrDefault(f => f.questionID == questionID)!=null) {
+                    db.Pins.Add(new Pin {
+                        questionID = questionID,
+                        y = y,
+                        x = x,
+                        questionnaireID = questionnaireID,
+                        thumbnailID = 1
+                    });
+                }
             }
-
+            db.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
 
