@@ -1,0 +1,46 @@
+﻿
+@model EducateMe4.Entities.Question
+
+@{
+    ViewBag.Title = "Answers";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Question
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+
+        <dt>
+           Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionType.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @if (Model.QuestionType.ID == 2 || Model.QuestionType.ID == 5 )
+    {
+        Html.RenderAction("AnswersIndex", "Question", new { questionId = Model.ID });
+    }
+
+    @*
+    @if (Model.QuestionType.name == "OpenQuestion")
+    {
+        @Html.Partial("OpenAnswerEdit", Model);
+    }
+    *@
+
+</p>

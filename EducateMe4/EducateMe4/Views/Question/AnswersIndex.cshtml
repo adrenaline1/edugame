@@ -1,0 +1,57 @@
+﻿
+@model List<EducateMe4.Entities.ClosedAnswer>
+
+    <h4>Answers</h4>
+
+    <div>
+        @using (Html.BeginForm("SaveAnswers", "Question"))
+        {
+
+            <table class="table">
+                <tr>
+                    <th>
+                        Is Correct
+                    </th>
+                    <th>
+                        Text
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                 @{ int questionId = 0; };
+
+                @for(int i = 0; i < Model.Count; i++)
+                {
+
+                     questionId = Model[i].questionID;
+
+                    <tr>
+                        <td>
+                            @Html.EditorFor(model => Model[i].isCorrect)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => Model[i].text)
+                        </td>
+
+                        <td>
+                            @Html.HiddenFor(model => Model[i].questionID);
+                            @Html.HiddenFor(model => Model[i].ID);
+
+                            @Html.ActionLink("Delete", "DeleteAnswer", new { id = Model[i].ID })
+                        </td>
+
+                    </tr>
+                }
+
+                    @Html.ActionLink("Add Answer", "AddAnswer", new { id = @questionId })
+
+            </table>
+
+            <input type="submit" value="Save Answers" class="btn btn-default" />
+
+        }
+
+
+    </div>
+
